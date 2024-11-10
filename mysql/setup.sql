@@ -41,3 +41,12 @@ CREATE TABLE IF NOT EXISTS account (
     FOREIGN KEY (user_id) REFERENCES user (user_id) ON DELETE CASCADE,
     FOREIGN KEY (website_id) REFERENCES website (website_id) ON DELETE CASCADE
 );
+
+INSERT INTO user
+(first_name, last_name, email)
+VALUES
+('Margot', 'Little', 'mlittle@gmail.com'),
+('Joel', 'Andrews', 'jandrews@yahoo.com'),
+('Cora', 'Brock', 'cbrock@outlook.com'),
+('Alexia', 'Fuller', 'afuller@outlook.com'),
+('Ali', 'Underwood', 'aunderwood@gmail.com');
