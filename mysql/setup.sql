@@ -50,3 +50,11 @@ VALUES
 ('Cora', 'Brock', 'cbrock@outlook.com'),
 ('Alexia', 'Fuller', 'afuller@outlook.com'),
 ('Ali', 'Underwood', 'aunderwood@gmail.com');
+
+INSERT INTO website
+(website_name, url)
+VALUES
+('U.S. News', 'http://www.usnews.com'),
+('Github', 'https://github.com'),
+('Facebook', 'https://facebook.com'),
+('The New York Times', 'https://nytimes.com');
