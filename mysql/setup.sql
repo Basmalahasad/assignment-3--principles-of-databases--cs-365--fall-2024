@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS website (
     PRIMARY KEY (website_id)
 );
 
-CREATE TABLE IF NOT EXISTS credential (
+CREATE TABLE IF NOT EXISTS account (
     password_id SMALLINT NOT NULL AUTO_INCREMENT,
     user_id SMALLINT NOT NULL,
     website_id SMALLINT NOT NULL,
