@@ -27,3 +27,17 @@ CREATE TABLE IF NOT EXISTS website (
 
     PRIMARY KEY (website_id)
 );
+
+CREATE TABLE IF NOT EXISTS credential (
+    password_id SMALLINT NOT NULL AUTO_INCREMENT,
+    user_id SMALLINT NOT NULL,
+    website_id SMALLINT NOT NULL,
+    username VARCHAR(128) NOT NULL UNIQUE,
+    passphrase VARBINARY(512) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    comments TEXT,
+
+    PRIMARY KEY (password_id),
+    FOREIGN KEY (user_id) REFERENCES user (user_id) ON DELETE CASCADE,
+    FOREIGN KEY (website_id) REFERENCES website (website_id) ON DELETE CASCADE
+);
