@@ -10,3 +10,12 @@ USE student_passwords;
 SET block_encryption_mode = 'aes-256-cbc';
 SET @key_str = UNHEX(SHA2('assignment 3', 256));
 SET @init_vector = RANDOM_BYTES(16);
+
+CREATE TABLE IF NOT EXISTS user (
+    user_id SMALLINT NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(128) NOT NULL,
+    last_name VARCHAR(128) NOT NULL,
+    email VARCHAR(128) NOT NULL UNIQUE,
+
+    PRIMARY KEY (user_id)
+);
