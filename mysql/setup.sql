@@ -2,14 +2,14 @@ DROP DATABASE IF EXISTS student_passwords;
 CREATE DATABASE student_passwords DEFAULT CHARACTER SET utf8mb4;
 
 DROP USER IF EXISTS 'passwords_user'@'localhost';
-CREATE USER 'passwords_user'@'localhost' IDENTIFIED BY '';
+CREATE USER 'passwords_user'@'localhost';
 GRANT ALL ON student_passwords.* TO 'passwords_user'@'localhost';
 
 USE student_passwords;
 
 SET block_encryption_mode = 'aes-256-cbc';
-SET @key_str = UNHEX(SHA2('assignment 3', 256));
-SET @init_vector = RANDOM_BYTES(16);
+SET @key_str = 'A1b2C3d4E5f6G7h8';
+SET @init_vector = '1234ABCD5678EFGH';
 
 CREATE TABLE IF NOT EXISTS user (
     user_id SMALLINT NOT NULL AUTO_INCREMENT,
