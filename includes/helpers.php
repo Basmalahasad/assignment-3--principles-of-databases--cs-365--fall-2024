@@ -10,7 +10,7 @@ function search($attribute, $search) {
         $valid_columns = [
             'user_id', 'first_name', 'last_name', 'email',
             'website_id', 'website_name', 'url',
-            'account_id', 'username', 'passphrase', 'created_at', 'comments'
+            'username', 'passphrase', 'created_at', 'comments'
         ];
 
         $db->exec("SET block_encryption_mode = '". BLOCK_ENCRYPTION_MODE ."'");
@@ -18,23 +18,22 @@ function search($attribute, $search) {
         $db->exec("SET @init_vector = '". INIT_VECTOR ."'");
 
         $search_table =
-            "CREATE TEMPORARY TABLE search_table AS
+            "CREATE TEMPORARY TABLE temporary_table AS
             SELECT
-                u.user_id,
-                u.first_name,
-                u.last_name,
-                u.email,
-                w.website_id,
-                w.website_name,
-                w.url,
-                a.account_id,
-                a.username,
-                CAST(AES_DECRYPT(a.passphrase, '". KEY_STR ."', '". INIT_VECTOR ."') AS CHAR) AS passphrase,
-                a.created_at,
-                a.comments
-            FROM account a
-            INNER JOIN user u ON a.user_id = u.user_id
-            INNER JOIN website w ON a.website_id = w.website_id";
+                user.user_id,
+                user.first_name,
+                user.last_name,
+                user.email,
+                website.website_id,
+                website.website_name,
+                website.url,
+                registers_for.username,
+                CAST(AES_DECRYPT(registers_for.passphrase, '". KEY_STR ."', '". INIT_VECTOR ."') AS CHAR) AS passphrase,
+                registers_for.created_at,
+                registers_for.comments
+            FROM registers_for
+            INNER JOIN user ON registers_for.user_id = user.user_id
+            INNER JOIN website ON registers_for.website_id = website.website_id";
         $db->exec($search_table);
 
         if ($attribute === 'all') {
@@ -43,9 +42,9 @@ function search($attribute, $search) {
                 $conditions[] = "$column LIKE \"%{$search}%\"";
             }
             $where_clause = implode(' OR ', $conditions);
-            $select_query = "SELECT * FROM search_table WHERE $where_clause";
+            $select_query = "SELECT * FROM temporary_table WHERE $where_clause";
         } else {
-            $select_query = "SELECT * FROM search_table WHERE $attribute LIKE \"%{$search}%\"";
+            $select_query = "SELECT * FROM temporary_table WHERE $attribute LIKE \"%{$search}%\"";
         }
 
         $statement = $db -> prepare($select_query);
