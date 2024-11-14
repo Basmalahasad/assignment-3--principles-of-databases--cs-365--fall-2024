@@ -3,7 +3,8 @@ CREATE DATABASE student_passwords DEFAULT CHARACTER SET utf8mb4;
 
 DROP USER IF EXISTS 'passwords_user'@'localhost';
 CREATE USER 'passwords_user'@'localhost';
-GRANT ALL ON student_passwords.* TO 'passwords_user'@'localhost';
+GRANT ALL PRIVILEGES ON student_passwords.* TO 'passwords_user'@'localhost';
+FLUSH PRIVILEGES;
 
 USE student_passwords;
 
@@ -28,7 +29,7 @@ CREATE TABLE IF NOT EXISTS website (
     PRIMARY KEY (website_id)
 );
 
-CREATE TABLE IF NOT EXISTS account (
+CREATE TABLE IF NOT EXISTS registersFor (
     account_id SMALLINT NOT NULL AUTO_INCREMENT,
     user_id SMALLINT NOT NULL,
     website_id SMALLINT NOT NULL,
@@ -59,7 +60,7 @@ VALUES
 ('Facebook', 'https://facebook.com'),
 ('The New York Times', 'https://nytimes.com');
 
-INSERT INTO account
+INSERT INTO registersFor
 (user_id, website_id, username, passphrase, created_at, comments)
 VALUES (
     1,
