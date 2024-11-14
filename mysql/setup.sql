@@ -29,16 +29,15 @@ CREATE TABLE IF NOT EXISTS website (
     PRIMARY KEY (website_id)
 );
 
-CREATE TABLE IF NOT EXISTS registersFor (
-    account_id SMALLINT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS registers_for (
     user_id SMALLINT NOT NULL,
     website_id SMALLINT NOT NULL,
-    username VARCHAR(128) NOT NULL UNIQUE,
+    username VARCHAR(128) NOT NULL,
     passphrase VARBINARY(512) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     comments TEXT,
 
-    PRIMARY KEY (account_id),
+    PRIMARY KEY (website_id, username), -- You can't have more than one account on the same website with the same username
     FOREIGN KEY (user_id) REFERENCES user (user_id) ON DELETE CASCADE,
     FOREIGN KEY (website_id) REFERENCES website (website_id) ON DELETE CASCADE
 );
@@ -60,8 +59,7 @@ VALUES
 ('Facebook', 'https://facebook.com'),
 ('The New York Times', 'https://nytimes.com');
 
-INSERT INTO registersFor
-(user_id, website_id, username, passphrase, created_at, comments)
+INSERT INTO registers_for
 VALUES (
     1,
     1,
