@@ -46,10 +46,12 @@ if (isset($_POST['delete_attribute'], $_POST['delete_pattern'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Database</title>
+    <title>Passwords Database</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+    <h1>Passwords Database</h1>
 
     <!-- Search Form -->
     <h2>Search Database</h2>
