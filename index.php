@@ -47,13 +47,12 @@ if (isset($_POST['delete_attribute'], $_POST['delete_pattern'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Database</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <h1>Search Database</h1>
-
     <!-- Search Form -->
+    <h2>Search Database</h2>
     <form method="post" action="index.php">
         <label for="attribute">Select Attribute:</label>
         <select name="attribute" id="attribute" required>
