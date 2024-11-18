@@ -7,15 +7,47 @@
 }
 
 body {
-  font-family: "Josefin Sans";
+  font-family: "Josefin Sans", sans-serif;;
   background-color: #f4f4f4;
   color: #333;
   line-height: 1.6;
   padding: 20px;
 }
 
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.clear-results-button {
+  background: transparent;
+  padding: 0px;
+  margin-bottom: 0px;
+  border-radius: 0px;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.clear-results-button:hover {
+  background-color: #c0392b;
+}
+
 h1 {
   color: #2c3e50;
+  font-size: 2em;
+  font-weight: 700;
+  text-align: center;
+  margin: 20px 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
@@ -45,4 +77,76 @@ textarea {
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+button {
+  background: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 12px;
+}
+
+button:hover {
+  background: #2980b9;
+  font-weight: 600;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+}
+
+th, td {
+  padding: 5px;
+  text-align: center;
+}
+
+th {
+  background: #2c3e50;
+  color: #fff;
+}
+
+.message {
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+  margin-top: 20px;
+}
+
+.message p {
+  margin: 0;
 }
