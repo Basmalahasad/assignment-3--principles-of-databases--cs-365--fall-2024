@@ -22,14 +22,15 @@ if (isset($_POST['update_attribute'], $_POST['new_value'], $_POST['query_attribu
 }
 
 
-if (isset($_POST['website_url'], $_POST['email'], $_POST['username'], $_POST['passphrase'], $_POST['comment'])) {
+if (isset($_POST['website_name'], $_POST['website_url'], $_POST['email'], $_POST['username'], $_POST['passphrase'], $_POST['comment'])) {
+    $website_name = htmlspecialchars($_POST['website_name']);
     $website_url = htmlspecialchars($_POST['website_url']);
     $email = htmlspecialchars($_POST['email']);
     $username = htmlspecialchars($_POST['username']);
     $passphrase = htmlspecialchars($_POST['passphrase']);
     $comment = htmlspecialchars($_POST['comment']);
 
-    insert($website_url, $email, $username, $passphrase, $comment);
+    insert($website_name,$website_url, $email, $username, $passphrase, $comment);
 }
 
 if (isset($_POST['delete_attribute'], $_POST['delete_pattern'])) {
@@ -51,12 +52,18 @@ if (isset($_POST['delete_attribute'], $_POST['delete_pattern'])) {
 </head>
 <body>
 
-    <h1>Passwords Database</h1>
+    <div class="header-container">
+        <h1>Passwords Database</h1>
+        <form method="post" action="index.php" style="margin: 0;"> <!-- Remove default margin -->
+            <input type="hidden" name="clear_results" value="1">
+            <button type="submit" class="clear-results-button">Clear Results</button>
+        </form>
+    </div>
 
     <!-- Search Form -->
     <h2>Search Database</h2>
     <form method="post" action="index.php">
-        <label for="attribute">Select Attribute:</label>
+        <label for="attribute">Search in:</label>
         <select name="attribute" id="attribute" required>
             <option value="all">All Fields</option>
             <option value="user_id">User  ID</option>
@@ -72,7 +79,7 @@ if (isset($_POST['delete_attribute'], $_POST['delete_pattern'])) {
             <option value="comments">Comments</option>
         </select>
 
-        <label for="search">Enter search value:</label>
+        <label for="search">For:</label>
         <input type="text" id="search" name="search" required>
 
         <button type="submit">Search</button>
@@ -81,7 +88,7 @@ if (isset($_POST['delete_attribute'], $_POST['delete_pattern'])) {
     <!-- Update Form -->
     <h2>Update an Attribute</h2>
     <form method="post" action="index.php">
-    <label for="update_attribute">Update attribute:</label>
+    <label for="update_attribute">Update:</label>
         <select name="update_attribute" id="update_attribute" required>
             <option value="first_name">First Name</option>
             <option value="last_name">Last Name</option>
@@ -93,10 +100,10 @@ if (isset($_POST['delete_attribute'], $_POST['delete_pattern'])) {
             <option value="comments">Comments</option>
         </select>
 
-        <label for="new_value">to:</label>
+        <label for="new_value">To:</label>
         <input type="text" id="new_value" name="new_value" required>
 
-        <label for="query_attribute">Where attribute:</label>
+        <label for="query_attribute">Where:</label>
         <select name="query_attribute" id="query_attribute" required>
             <option value="user_id">User  ID</option>
             <option value="first_name">First Name</option>
@@ -120,6 +127,9 @@ if (isset($_POST['delete_attribute'], $_POST['delete_pattern'])) {
     <!-- Insert Form -->
     <h2>Insert New Entry</h2>
     <form method="post" action="index.php">
+        <label for="website_name">Website Name:</label>
+        <input type="text" id="website_name" name="website_name" required>
+
         <label for="website_url">Website URL:</label>
         <input type="text" id="website_url" name="website_url" required>
 
@@ -141,7 +151,7 @@ if (isset($_POST['delete_attribute'], $_POST['delete_pattern'])) {
         <!-- Delete Form -->
     <h2>Delete an Entry</h2>
     <form method="post" action="index.php">
-        <label for="delete_attribute">Select Attribute to Match:</label>
+        <label for="delete_attribute">Delete:</label>
         <select name="delete_attribute" id="delete_attribute" required>
             <option value="user_id">User ID</option>
             <option value="first_name">First Name</option>
@@ -156,7 +166,7 @@ if (isset($_POST['delete_attribute'], $_POST['delete_pattern'])) {
             <option value="comments">Comments</option>
         </select>
 
-        <label for="delete_pattern">Enter pattern to match:</label>
+        <label for="delete_pattern">Where:</label>
         <input type="text" id="delete_pattern" name="delete_pattern" required>
 
         <button type="submit">Delete</button>
