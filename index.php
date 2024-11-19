@@ -115,19 +115,31 @@ if (isset($_POST['delete_attribute'], $_POST['delete_pattern'])) {
 
     <!-- Insert Form -->
     <h2>Insert New Entry</h2>
+    <div class="message warning">
+        <p>
+            *You can only insert an account or a website. Users are referenced by their email,
+            make sure you are using a valid existing one.
+        </p>
+    </div>
     <form method="post" action="index.php">
       <label for="website_name">Website Name:</label>
       <input type="text" id="website_name" name="website_name" required>
+
       <label for="website_url">Website URL:</label>
       <input type="text" id="website_url" name="website_url" required>
+
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" required>
+
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" required>
+
       <label for="passphrase">Passphrase:</label>
       <input type="password" id="passphrase" name="passphrase" required>
+
       <label for="comment">Comment:</label>
       <textarea id="comment" name="comment"></textarea>
+
       <button type="submit">Insert</button>
     </form>
 
